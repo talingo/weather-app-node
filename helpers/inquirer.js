@@ -64,13 +64,14 @@ export const readInput = async (message) => {
   return description;
 };
 
-export const deleteTasksList = async (tasks = []) => {
-  const choices = tasks.map((task, i) => {
+export const listPlaces = async (places = []) => {
+
+  const choices = places.map((place, i) => {
     const index = `${i + 1}.`.green;
 
     return {
-      value: task.id,
-      name: `${index} ${task.description}`,
+      value: place.id,
+      name: `${index} ${place.name}`,
     };
   });
 
@@ -83,7 +84,7 @@ export const deleteTasksList = async (tasks = []) => {
     {
       type: "list",
       name: "id",
-      message: "Delete",
+      message: "Select city: ",
       choices,
     },
   ];

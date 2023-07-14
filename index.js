@@ -1,5 +1,6 @@
 import "colors";
-import { inquirerMenu, pause, readInput } from "./helpers/inquirer.js";
+import 'dotenv/config'
+import { inquirerMenu, pause, readInput, listPlaces } from "./helpers/inquirer.js";
 import { Search } from "./models/search.js";
 
 console.clear();
@@ -16,23 +17,30 @@ const main = async () => {
     switch (opt) {
       case 1:
         // Show message
-          const place = await readInput('City: ');
-          await search.city( place );
-        
-        // Search places
+          const searchTerm = await readInput('City: ');
+          
+          // Search places
+          const places = await search.city( searchTerm );
+          
+          // Select place
+          const selectedID = await listPlaces(places);
+          const selectedPlace = places.find( places => places.id === selectedID );
 
-        // Select place
-
+          
         // Weather
+        const weather = await search.placeWeather(selectedPlace.lat, selectedPlace.lng )
 
         // Show results
+        console.clear()
         console.log('\n City info \n'.green);
-        console.log('City:', );
-        console.log('Lat:',);
-        console.log('Lng:',);
-        console.log('Temp:', );
-        console.log('Min:',);
-        console.log('Max:',);
+        console.log('City:', selectedPlace.name.green );
+        console.log('Lat:', selectedPlace.lat);
+        console.log('Lng:', selectedPlace.lng);
+        console.log('Temp:', weather.temp);
+        console.log('Min:', weather.min);
+        console.log('Max:', weather.max);
+        console.log('Hows the weather:', weather.description.green)
+
         break;
 
       case 2:
