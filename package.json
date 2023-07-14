@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/talingo/weather-app-node#readme",
   "dependencies": {
+    "axios": "^1.4.0",
     "colors": "^1.4.0",
     "inquirer": "^9.2.8"
   }
