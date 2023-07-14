@@ -54,7 +54,7 @@ export const readInput = async (message) => {
       message,
       validate(value) {
         if (value.length === 0) {
-          ("Please enter a description");
+          ("Please enter a value");
         }
         return true;
       },
@@ -77,7 +77,7 @@ export const listPlaces = async (places = []) => {
 
   choices.unshift({
     value: "0",
-    name: "0. ".green + "Back to the Menu",
+    name: "0. ".green + "Cancel",
   });
 
   const questions = [
@@ -116,11 +116,6 @@ export const showListAsChecklist = async ( tasks = [] ) => {
       checked: (task.completedOn) ? true : false
     };
   });
-
-  // choices.unshift({
-  //   value: "0",
-  //   name: "0. ".green + "Back to the Menu",
-  // });
 
   const question = [
     {

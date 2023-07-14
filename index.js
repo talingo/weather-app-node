@@ -24,7 +24,12 @@ const main = async () => {
           
           // Select place
           const selectedID = await listPlaces(places);
-          const selectedPlace = places.find( places => places.id === selectedID );
+          if (selectedID === '0') continue;
+
+          const selectedPlace = places.find( p => p.id === selectedID );
+
+
+          search.addHistory(selectedPlace.name)
 
           
         // Weather
@@ -44,6 +49,10 @@ const main = async () => {
         break;
 
       case 2:
+        search.capitalizeHistorial.forEach( (place, i) =>{
+          const idx = `${ i + 1 }.`.green;
+          console.log( `${idx} ${place}` ); 
+        })
         break;
 
       case 3:
